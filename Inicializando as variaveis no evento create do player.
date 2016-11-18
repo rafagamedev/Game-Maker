@@ -1,0 +1,16 @@
+///Iniciando as variaveis
+
+// Gravidade
+grav = 1;
+
+// Velocidade
+spd = 4;
+
+// Velocidade do pulo
+jspd = 12;
+
+// Velocidade Horizontal
+hspd = 0;
+
+// Velocidade vertical
+vspd = 0;
