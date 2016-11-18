@@ -1,0 +1,68 @@
+/// fisica da plataforma
+
+// variavel local que checa a seta pra direita
+var rkey = keyboard_check(vk_right);
+
+// variavel local que checa a seta pra esquerda
+var lkey = keyboard_check(vk_left);
+
+// variavel local que checa a seta pra cima
+var ukey = keyboard_check(vk_up);
+
+// Checa se estamos no chao
+if(place_meeting (x,y+1, obj_solid)){
+    vspd = 0; //Velocidade vertical fica 0 pq estamos tocando no chao.
+    // Codigo para pular
+    if (ukey){
+        vspd = -jspd;
+        image_speed = 0;
+    }
+}else{
+    // Se estiver no ar ativa a gravidade
+    if(vspd < 10){
+        vspd += grav;
+    }
+}
+
+// Movendo pra direita
+if(rkey){
+    hspd = spd;
+    image_xscale = 1;
+    image_speed = 8;
+}
+
+// movendo pra esquerda
+if(lkey){
+    hspd = -spd;
+    image_xscale = -1;
+    image_speed = 8;
+}
+
+// Checar se não estou me movimentando
+
+if((!rkey && !lkey) || (rkey && lkey)){
+    hspd = 0;
+    image_speed = 0;
+}
+
+// Colisao horizontal
+if(place_meeting (x+hspd, y, obj_solid)){
+    while (!place_meeting(x+sign(hspd), y, obj_solid)){
+        x+= sign(hspd);
+    }
+    hspd = 0;
+}
+
+// Mover na horizontal
+x += hspd;
+
+// Colisao vertical
+if(place_meeting (x, y+vspd, obj_solid)){
+    while (!place_meeting(x, y+sign(vspd), obj_solid)){
+        y+= sign(vspd);
+    }
+    vspd = 0;
+}
+
+// Mover na vertical
+y += vspd;
