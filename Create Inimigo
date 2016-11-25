@@ -1,0 +1,16 @@
+/// Inicializando Variaveis
+
+// Variavel de direção
+dir = -1;
+
+// Variavel de velocidade
+movespeed = 3;
+
+// Variavel de gravidade
+grav = 0.2;
+
+// Variavel de velocidade horizontal
+hsp = 0;
+
+// Variavel de velocidade vertical
+vsp = 0;
