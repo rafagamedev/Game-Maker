@@ -1,0 +1,40 @@
+hsp = dir * movespeed;
+vsp += grav;
+
+// Colisão horizontal
+if (place_meeting(x+hsp,y,obj_solid))
+{
+    while(!place_meeting(x+sign(hsp),y,obj_solid))
+    {
+        x += sign(hsp);
+    }
+    hsp = 0;
+    
+    dir *= -1;
+}
+x += hsp;
+
+//Colisão vertical
+if (place_meeting(x,y+vsp,obj_solid))
+{
+    while(!place_meeting(x,y+sign(vsp),obj_solid))
+    {
+        y += sign(vsp);
+    }
+    vsp = 0;
+}
+y += vsp;
+
+//colisão com o inimigo
+if (place_meeting(x,y,obj_player))
+{
+    if (obj_player.y < y-16)
+    {
+        with (obj_player) vsp = -jumpspeed;
+        instance_destroy();
+    }
+    else
+    {
+        game_restart();
+    }
+}
